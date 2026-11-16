@@ -46,6 +46,8 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+        env:
+          TF_VAR_appsrv_winadmin_password: ${{ secrets.TF_VAR_appsrv_winadmin_password }}
 
   terraform-apply:
     name: Terraform Apply
@@ -83,3 +85,5 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+        env:
+          TF_VAR_appsrv_winadmin_password: ${{ secrets.TF_VAR_appsrv_winadmin_password }}
