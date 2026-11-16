@@ -670,3 +670,64 @@ resource "azurerm_monitor_data_collection_rule_association" "management_vm_dcr" 
 
   data_collection_rule_id = azurerm_monitor_data_collection_rule.vm_monitoring_dcr.id
 }
+
+// Application Subnet NSG
+resource "azurerm_network_security_group" "application_subnet_nsg" {
+  name                = "nsg-application-subnet"
+  location            = var.region
+  resource_group_name = azurerm_resource_group.networking.name
+
+  security_rule {
+    name      = "Allow-Bastion-RDP"
+    priority  = 100
+    direction = "Inbound"
+    access    = "Allow"
+    protocol  = "Tcp"
+
+    source_port_range      = "*"
+    destination_port_range = "3389"
+
+    source_address_prefix      = "10.0.1.0/24"
+    destination_address_prefix = "*"
+  }
+
+  tags = local.common_tags
+}
+
+// Application Subnet NSG assosiation
+resource "azurerm_subnet_network_security_group_association" "application_subnet_nsg_association" {
+  subnet_id                 = azurerm_subnet.application_subnet.id
+  network_security_group_id = azurerm_network_security_group.application_subnet_nsg.id
+}
+
+
+// Management Subnet NSG
+resource "azurerm_network_security_group" "management_subnet_nsg" {
+  name                = "nsg-management-subnet"
+  location            = var.region
+  resource_group_name = azurerm_resource_group.networking.name
+
+  security_rule {
+    name      = "Allow-Bastion-SSH"
+    priority  = 100
+    direction = "Inbound"
+    access    = "Allow"
+    protocol  = "Tcp"
+
+    source_port_range      = "*"
+    destination_port_range = "22"
+
+    source_address_prefix = "10.0.1.0/24" # AzureBastionSubnet
+
+    destination_address_prefix = "*"
+  }
+
+  tags = local.common_tags
+}
+
+// Management Subnet NSG assosiation
+resource "azurerm_subnet_network_security_group_association" "management_subnet_nsg_association" {
+  subnet_id                 = azurerm_subnet.management_subnet.id
+  network_security_group_id = azurerm_network_security_group.management_subnet_nsg.id
+}
+
