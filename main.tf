@@ -386,7 +386,7 @@ resource "azurerm_storage_account" "hub_and_spoke_sa" {
   account_replication_type = "LRS"
 
   access_tier                   = "Hot"
-  public_network_access_enabled = false
+  public_network_access_enabled = true
 
   shared_access_key_enabled = true
 
