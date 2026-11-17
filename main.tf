@@ -190,6 +190,8 @@ resource "azurerm_bastion_host" "bastion_server" {
     subnet_id            = azurerm_subnet.bastion_subnet.id
     public_ip_address_id = azurerm_public_ip.bastion_public_ip.id
   }
+
+  tags = local.common_tags
 }
 
 // Application VM NIC
@@ -730,4 +732,3 @@ resource "azurerm_subnet_network_security_group_association" "management_subnet_
   subnet_id                 = azurerm_subnet.management_subnet.id
   network_security_group_id = azurerm_network_security_group.management_subnet_nsg.id
 }
-
