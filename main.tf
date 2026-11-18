@@ -328,7 +328,7 @@ resource "azurerm_key_vault" "main_kv" {
 
   tenant_id                  = data.azurerm_client_config.current.tenant_id
   sku_name                   = "standard"
-  enable_rbac_authorization  = true
+  rbac_authorization_enabled = true
   soft_delete_retention_days = 30
   purge_protection_enabled   = true
   tags                       = local.common_tags
@@ -731,4 +731,12 @@ resource "azurerm_network_security_group" "management_subnet_nsg" {
 resource "azurerm_subnet_network_security_group_association" "management_subnet_nsg_association" {
   subnet_id                 = azurerm_subnet.management_subnet.id
   network_security_group_id = azurerm_network_security_group.management_subnet_nsg.id
+}
+
+// CICD test deployment resource group
+resource "azurerm_resource_group" "cicd_test_rg" {
+  name     = "RG-cicd-test"
+  location = var.region
+
+  tags = local.common_tags
 }
