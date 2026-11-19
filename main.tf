@@ -732,11 +732,3 @@ resource "azurerm_subnet_network_security_group_association" "management_subnet_
   subnet_id                 = azurerm_subnet.management_subnet.id
   network_security_group_id = azurerm_network_security_group.management_subnet_nsg.id
 }
-
-// CICD test deployment resource group
-resource "azurerm_resource_group" "cicd_test_rg" {
-  name     = "RG-cicd-test"
-  location = var.region
-
-  tags = local.common_tags
-}
