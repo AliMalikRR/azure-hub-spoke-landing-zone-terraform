@@ -34,7 +34,10 @@ The objective was to provide a secure, scalable and resilient cloud environment 
 
 ## Architecture Diagram
 
-*Architecture diagram will be added.*
+
+=======
+*Architecture diagram to be added.*
+>>>>>>> 7a3e73c8f81ead05185c03e266fbbcfe1b31607a
 
 ---
 
@@ -72,4 +75,7 @@ The objective was to provide a secure, scalable and resilient cloud environment 
 
 ## Technologies
 
+
+=======
 Microsoft Azure, Terraform, Microsoft Entra ID, Azure RBAC, Azure Bastion, Azure Key Vault, Managed Identities, Azure Storage, Private Endpoints, Private DNS, Azure Monitor, Log Analytics Workspace, Recovery Services Vault, Git, GitHub and GitHub Actions.
+>>>>>>> 7a3e73c8f81ead05185c03e266fbbcfe1b31607a
