@@ -32,11 +32,12 @@ The objective was to provide a secure, scalable and resilient cloud environment 
 
 ---
 
-## Architecture Diagram
+## CICD Architecture Diagram
 
 
 =======
-*Architecture diagram to be added.*
+<img width="1536" height="1024" alt="Terraform Azure CI_CD Workflow" src="https://github.com/user-attachments/assets/a1ba64b2-e5aa-4f80-91a5-beedbd8e6afb" />
+
 
 ---
 
