@@ -123,7 +123,7 @@ resource "azurerm_virtual_network_peering" "hub_to_app" {
   remote_virtual_network_id = azurerm_virtual_network.app_vnet.id
 
   allow_virtual_network_access = true
-  allow_forwarded_traffic      = false
+  allow_forwarded_traffic      = true
   allow_gateway_transit        = false
   use_remote_gateways          = false
 }
@@ -136,7 +136,7 @@ resource "azurerm_virtual_network_peering" "app_to_hub" {
   remote_virtual_network_id = azurerm_virtual_network.hub_vnet.id
 
   allow_virtual_network_access = true
-  allow_forwarded_traffic      = false
+  allow_forwarded_traffic      = true
   allow_gateway_transit        = false
   use_remote_gateways          = false
 }
@@ -149,7 +149,7 @@ resource "azurerm_virtual_network_peering" "hub_to_management" {
   remote_virtual_network_id = azurerm_virtual_network.management_vnet.id
 
   allow_virtual_network_access = true
-  allow_forwarded_traffic      = false
+  allow_forwarded_traffic      = true
   allow_gateway_transit        = false
   use_remote_gateways          = false
 }
@@ -162,7 +162,7 @@ resource "azurerm_virtual_network_peering" "management_to_hub" {
   remote_virtual_network_id = azurerm_virtual_network.hub_vnet.id
 
   allow_virtual_network_access = true
-  allow_forwarded_traffic      = false
+  allow_forwarded_traffic      = true
   allow_gateway_transit        = false
   use_remote_gateways          = false
 }
@@ -731,4 +731,22 @@ resource "azurerm_network_security_group" "management_subnet_nsg" {
 resource "azurerm_subnet_network_security_group_association" "management_subnet_nsg_association" {
   subnet_id                 = azurerm_subnet.management_subnet.id
   network_security_group_id = azurerm_network_security_group.management_subnet_nsg.id
+}
+
+// Azure Firewall Subnet
+resource "azurerm_subnet" "azure_firewall" {
+  name                 = "AzureFirewallSubnet"
+  resource_group_name  = azurerm_resource_group.networking.name
+  virtual_network_name = azurerm_virtual_network.hub_vnet.name
+  address_prefixes     = ["10.0.3.0/26"]
+}
+
+// Firewall public IP
+resource "azurerm_public_ip" "firewall" {
+  name                = "pip-fw-hub"
+  location            = var.region
+  resource_group_name = azurerm_resource_group.networking.name
+
+  allocation_method = "Static"
+  sku               = "Standard"
 }
