@@ -791,3 +791,15 @@ resource "azurerm_route" "default_route" {
   next_hop_type          = "VirtualAppliance"
   next_hop_in_ip_address = azurerm_firewall.hub_fw.ip_configuration[0].private_ip_address
 }
+
+// Route table assosiations - Application subnet
+resource "azurerm_subnet_route_table_association" "app_spoke_rt_assoc" {
+  subnet_id      = azurerm_subnet.application_subnet.id
+  route_table_id = azurerm_route_table.spoke_rt.id
+}
+
+// Route tabel assosiations - Management subnet
+resource "azurerm_subnet_route_table_association" "mgmt_spoke_rt_assoc" {
+  subnet_id      = azurerm_subnet.management_subnet.id
+  route_table_id = azurerm_route_table.spoke_rt.id
+}
