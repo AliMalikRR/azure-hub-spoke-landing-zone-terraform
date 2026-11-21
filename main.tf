@@ -750,3 +750,27 @@ resource "azurerm_public_ip" "firewall" {
   allocation_method = "Static"
   sku               = "Standard"
 }
+
+// Firewall plicy
+resource "azurerm_firewall_policy" "hub_fw_policy" {
+  name                = "fw-policy-hub"
+  resource_group_name = azurerm_resource_group.networking.name
+  location            = var.region
+}
+
+// Azure Firewall
+resource "azurerm_firewall" "hub_fw" {
+  name                = "fw-hub-eastus"
+  location            = var.region
+  resource_group_name = azurerm_resource_group.networking.name
+  sku_name            = "AZFW_VNet"
+  sku_tier            = "Standard"
+
+  firewall_policy_id = azurerm_firewall_policy.hub_fw_policy.id
+
+  ip_configuration {
+    name                 = "fw-ipconfig"
+    subnet_id            = azurerm_subnet.azure_firewall.id
+    public_ip_address_id = azurerm_public_ip.firewall.id
+  }
+}
