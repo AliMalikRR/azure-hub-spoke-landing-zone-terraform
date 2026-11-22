@@ -751,7 +751,7 @@ resource "azurerm_public_ip" "firewall" {
   sku               = "Standard"
 }
 
-// Firewall plicy
+// Firewall policy
 resource "azurerm_firewall_policy" "hub_fw_policy" {
   name                = "fw-policy-hub"
   resource_group_name = azurerm_resource_group.networking.name
