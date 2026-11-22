@@ -89,6 +89,8 @@ This repository contains supporting project documentation:
 - Lessons Learned
 - Phase 2 - Azure Firewall and User Defined Routes
 
+---
+
 ## Phase 2 Enhancement
 
 Phase 2 introduced:
@@ -100,3 +102,5 @@ Phase 2 introduced:
 - Effective Route validation
 
 Workloads within the spoke subnets now forward outbound traffic to the Azure Firewall using a default route (0.0.0.0/0) configured through a shared route table.
+
+Microsoft Azure, Terraform, Microsoft Entra ID, Azure RBAC, Azure Bastion, Azure Key Vault, Managed Identities, Azure Storage, Private Endpoints, Private DNS, Azure Monitor, Log Analytics Workspace, Recovery Services Vault, Git, GitHub and GitHub Actions.

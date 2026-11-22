@@ -773,6 +773,8 @@ resource "azurerm_firewall" "hub_fw" {
     subnet_id            = azurerm_subnet.azure_firewall.id
     public_ip_address_id = azurerm_public_ip.firewall.id
   }
+
+  tags = local.common_tags
 }
 
 // Route Table
