@@ -76,5 +76,27 @@ The objective was to provide a secure, scalable and resilient cloud environment 
 
 ## Technologies
 
-
 Microsoft Azure, Terraform, Microsoft Entra ID, Azure RBAC, Azure Bastion, Azure Key Vault, Managed Identities, Azure Storage, Private Endpoints, Private DNS, Azure Monitor, Log Analytics Workspace, Recovery Services Vault, Git, GitHub and GitHub Actions.
+
+---
+
+## Documentation
+
+This repository contains supporting project documentation:
+
+- Technical Documentation
+- Testing & Validation
+- Lessons Learned
+- Phase 2 - Azure Firewall and User Defined Routes
+
+## Phase 2 Enhancement
+
+Phase 2 introduced:
+
+- Azure Firewall
+- Azure Firewall Policy
+- User Defined Routes (UDRs)
+- Centralised outbound routing
+- Effective Route validation
+
+Workloads within the spoke subnets now forward outbound traffic to the Azure Firewall using a default route (0.0.0.0/0) configured through a shared route table.
