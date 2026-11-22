@@ -733,7 +733,12 @@ resource "azurerm_subnet_network_security_group_association" "management_subnet_
   network_security_group_id = azurerm_network_security_group.management_subnet_nsg.id
 }
 
-// Azure Firewall Subnet
+
+
+
+// Fire wall, route tabel and udr removed due to cost implications.
+
+/* // Azure Firewall Subnet
 resource "azurerm_subnet" "azure_firewall" {
   name                 = "AzureFirewallSubnet"
   resource_group_name  = azurerm_resource_group.networking.name
@@ -804,4 +809,4 @@ resource "azurerm_subnet_route_table_association" "app_spoke_rt_assoc" {
 resource "azurerm_subnet_route_table_association" "mgmt_spoke_rt_assoc" {
   subnet_id      = azurerm_subnet.management_subnet.id
   route_table_id = azurerm_route_table.spoke_rt.id
-}
+} */
