@@ -734,15 +734,6 @@ resource "azurerm_subnet_network_security_group_association" "management_subnet_
 }
 
 
-// Test RG
-resource "azurerm_resource_group" "rgtest" {
-  name     = "rg-test-for-cicd"
-  location = var.region
-
-  tags = local.common_tags
-}
-
-
 // Fire wall, route tabel and udr removed due to cost implications.
 
 /* // Azure Firewall Subnet
