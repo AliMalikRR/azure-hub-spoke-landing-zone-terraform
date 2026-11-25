@@ -733,6 +733,12 @@ resource "azurerm_subnet_network_security_group_association" "management_subnet_
   network_security_group_id = azurerm_network_security_group.management_subnet_nsg.id
 }
 
+resource "azurerm_resource_group" "rg_test_delete" {
+  name     = "test-rg-delete"
+  location = var.region
+
+  tags = local.common_tags
+}
 
 // Fire wall, route tabel and udr removed due to cost implications.
 
